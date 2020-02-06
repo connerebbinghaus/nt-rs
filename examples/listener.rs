@@ -15,5 +15,7 @@ async fn main() {
         println!("Got new entry {:?}", data);
     });
 
-    loop {}
+    loop {
+        std::thread::yield_now()
+    }
 }

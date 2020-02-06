@@ -1,4 +1,4 @@
-use nt::{CallbackType, EntryData, EntryValue, NetworkTables};
+use nt::{CallbackType, NetworkTables};
 
 type Result<T> = std::result::Result<T, failure::Error>;
 

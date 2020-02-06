@@ -18,6 +18,7 @@ async fn main() -> Result<()> {
         println!("{} => {:?}", id, data);
     }
 
-    loop {}
-    Ok(())
+    loop {
+        std::thread::yield_now()
+    }
 }

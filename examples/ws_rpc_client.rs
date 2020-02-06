@@ -4,7 +4,7 @@ use std::time::Duration;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let mut nt = NetworkTables::connect_ws("ws://127.0.0.1:1735", "nt-ws").await?;
+    let nt = NetworkTables::connect_ws("ws://127.0.0.1:1735", "nt-ws").await?;
 
     let mut i = 0;
     loop {

@@ -10,12 +10,14 @@ use nt_network::{
     EntryAssignment, NTVersion, Packet, ProtocolVersionUnsupported, ReceivedPacket, RpcResponse,
     ServerHello, ServerHelloComplete,
 };
-use std::borrow::Cow;
 use std::net::SocketAddr;
 use std::panic;
 use std::sync::{Arc, Mutex};
 use tokio::net::{TcpListener, TcpStream};
 use tokio_util::codec::Decoder;
+
+#[cfg(feature = "websocket")]
+use std::borrow::Cow;
 
 pub async fn connection(
     ip: String,
