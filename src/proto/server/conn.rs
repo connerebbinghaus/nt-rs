@@ -38,12 +38,12 @@ pub async fn connection(
         match std::str::from_utf8(&buf[..]) {
             // Spec says that the upgrade must be a GET, so check for that
             Ok(s) if s.starts_with("GET") => {
-                println!("Client is websocket");
+                info!("Client is websocket");
                 handle_ws_conn(addr, conn, &state).await.unwrap();
             }
             // If the first bytes weren't "GET" it cannot be a websocket client
             _ => {
-                println!("Connection is TCP");
+                info!("Connection is TCP");
 
                 let (tx, rx) = unbounded::<Box<dyn Packet>>();
                 state.lock().unwrap().clients.insert(addr, tx);
@@ -68,7 +68,7 @@ async fn handle_ws_conn(
     Server is not configured to serve websocket clients.";
     use tokio::io::AsyncWriteExt;
     conn.write(resp.as_bytes()).await?;
-    println!("Rejecting websocket client as server is not configured with websocket feature.");
+    warn!("Rejecting websocket client as server is not configured with websocket feature.");
     Ok(())
 }
 
@@ -108,7 +108,7 @@ async fn handle_ws_conn(
     .await?;
 
     if !client_valid {
-        println!("Rejecting client for not specifying correct protocol");
+        warn!("Rejecting client for not specifying correct protocol");
         let frame = CloseFrame {
             code: CloseCode::Unsupported, // WS 1003
             reason: Cow::Borrowed("NetworkTables protocol required."),

@@ -6,6 +6,8 @@
 //! the state of the connection, accessing, as well as updating and creating entries that will be
 //! synced to the server.
 
+#[macro_use]
+extern crate log;
 extern crate tokio;
 
 mod nt;

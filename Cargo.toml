@@ -8,7 +8,7 @@ repository = "https://gitlab.com/Redrield/nt-rs"
 edition = "2018"
 
 [dependencies]
-tokio = { version = "0.2", features = ["full"] }
+tokio = { version = "0.2", features = ["macros", "rt-core", "io-util", "tcp", "dns", "time"] }
 bytes = "0.5.3"
 failure = "0.1.5"
 nt-network = { path = "./nt-network" }
@@ -20,8 +20,8 @@ tokio-util = { version = "0.2", features = ["codec"] }
 url = { version = "2.1.0", optional = true }
 tokio-tungstenite = { git = "https://github.com/dbcfd/tokio-tungstenite", branch = "tokio2", optional = true, features = ["stream"] }
 http = { version = "0.1.21", optional = true }
+log="0.4"
 
 [features]
 default = []
 websocket = ["tokio-tungstenite", "url", "http"]
-
